@@ -33,6 +33,7 @@ hf-causal-experimental (pretrained=meta-llama/Llama-2-7b-chat-hf,use_accelerate=
 |-------------|------:|------|-----:|---|-----:|
 |truthfulqa_mc|      1|mc1   |0.3023|±  |0.0161|
 |             |       |mc2   |0.4531|±  |0.0156|
+
 37.77% average vs 38.76% (HF)
 22 seconds
 
@@ -40,6 +41,7 @@ hf-causal-experimental (pretrained=meta-llama/Llama-2-7b-chat-hf,use_accelerate=
 |   Task   |Version|Metric|Value |   |Stderr|
 |----------|------:|------|-----:|---|-----:|
 |winogrande|      0|acc   |0.7269|±  |0.0125|
+
 72.69% vs 74.03%
 1 min 56 seconds
 
@@ -47,5 +49,6 @@ hf-causal-experimental (pretrained=meta-llama/Llama-2-7b-chat-hf,use_accelerate=
 |Task |Version|Metric|Value |   |Stderr|
 |-----|------:|------|-----:|---|-----:|
 |gsm8k|      0|acc   |0.1334|±  |0.0094|
+
 13.34% vs 14.48%
 43 mins 25 seconds
