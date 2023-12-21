@@ -16,7 +16,36 @@ pip install -e ".[auto-gptq]"
 Request access at https://huggingface.co/meta-llama/Llama-2-7b-chat-hf
 Log in with `huggingface-cli login` before running evaluation harness
 
-# Evaluation Command
+## Evaluation Commands
 ```
-lm_eval --model hf --model_args pretrained=meta-llama/Llama-2-7b-chat-hf --tasks hellaswag --device cuda:0 --batch_size 8
+python main.py --model hf-causal-experimental --model_args pretrained=meta-llama/Llama-2-7b-chat-hf,use_accelerate=True --tasks hellaswag --device cuda:0 --num_fewshot 10 --batch_size 8
+
+python main.py --model hf-causal-experimental --model_args pretrained=meta-llama/Llama-2-7b-chat-hf,use_accelerate=True --tasks truthfulqa_mc --device cuda:0 --num_fewshot 0 --batch_size 8
+
+python main.py --model hf-causal-experimental --model_args pretrained=meta-llama/Llama-2-7b-chat-hf,use_accelerate=True --tasks winogrande --device cuda:0 --num_fewshot 5 --batch_size 8
+
+python main.py --model hf-causal-experimental --model_args pretrained=meta-llama/Llama-2-7b-chat-hf,use_accelerate=True --tasks gsm8k --device cuda:0 --num_fewshot 5 --batch_size 4
 ```
+
+## Results
+hf-causal-experimental (pretrained=meta-llama/Llama-2-7b-chat-hf,use_accelerate=True), limit: None, provide_description: False, num_fewshot: 0, batch_size: 8
+|    Task     |Version|Metric|Value |   |Stderr|
+|-------------|------:|------|-----:|---|-----:|
+|truthfulqa_mc|      1|mc1   |0.3023|±  |0.0161|
+|             |       |mc2   |0.4531|±  |0.0156|
+37.77% average vs 38.76% (HF)
+22 seconds
+
+hf-causal-experimental (pretrained=meta-llama/Llama-2-7b-chat-hf,use_accelerate=True), limit: None, provide_description: False, num_fewshot: 5, batch_size: 8
+|   Task   |Version|Metric|Value |   |Stderr|
+|----------|------:|------|-----:|---|-----:|
+|winogrande|      0|acc   |0.7269|±  |0.0125|
+72.69% vs 74.03%
+1 min 56 seconds
+
+hf-causal-experimental (pretrained=meta-llama/Llama-2-7b-chat-hf,use_accelerate=True), limit: None, provide_description: False, num_fewshot: 5, batch_size: 4
+|Task |Version|Metric|Value |   |Stderr|
+|-----|------:|------|-----:|---|-----:|
+|gsm8k|      0|acc   |0.1334|±  |0.0094|
+13.34% vs 14.48%
+43 mins 25 seconds
