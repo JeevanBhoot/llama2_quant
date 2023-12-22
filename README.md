@@ -9,16 +9,18 @@ conda create -n llama2_env python=3.10
 conda activate llama2_env
 ```
 
-## Installing EleutherAI LM Evaluation Harness
-Same version that HuggingFace uses for Open LLM Leaderboard
+## Installing EleutherAI LM Evaluation Harness and AutoGPTQ
+Newer version than what HuggingFace uses for Open LLM Leaderboard
 ```
 git clone https://github.com/EleutherAI/lm-evaluation-harness
 cd lm-evaluation-harness
-git checkout b281b0921b636bc36ad05c0b0b0763bd6dd43463
+git checkout v0.4.0
 pip install -e .
 pip install gekko
-conda install -c "nvidia/label/cuda-12.1.0" cuda
-pip install -e ".[auto-gptq]"
+conda install -c "nvidia/label/cuda-11.7.0" cuda
+pip install "git+https://github.com/PanQiWei/AutoGPTQ.git@v0.6.0"
+pip uninstall triton
+pip install triton==2.1.0
 ```
 
 ## Llama2 Access
@@ -42,7 +44,7 @@ python main.py --model hf-causal-experimental --model_args pretrained=meta-llama
 
 ### Llama2 7B GPTQ
 ```
-python main.py --model hf-causal-experimental --model_args pretrained=TheBloke/Llama-2-7B-Chat-GPTQ,use_accelerate=True,quantized=True,gptq_use_triton=True --tasks truthfulqa_mc --device cuda:0 --num_fewshot 0 --batch_size 8
+lm_eval --model hf --model_args pretrained=TheBloke/Llama-2-7B-Chat-GPTQ,gptq=True,gptq_use_triton=True,load_in_4bit=True --tasks truthfulqa_mc1 --num_fewshot 0 --batch_size 1 --device cuda:0
 ```
 
 ## Results
