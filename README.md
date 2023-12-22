@@ -28,6 +28,15 @@ python main.py --model hf-causal-experimental --model_args pretrained=meta-llama
 ```
 
 ## Results
+hf-causal-experimental (pretrained=meta-llama/Llama-2-7b-chat-hf,use_accelerate=True), limit: None, provide_description: False, num_fewshot: 10, batch_size: 8
+|  Task   |Version| Metric |Value |   |Stderr|
+|---------|------:|--------|-----:|---|-----:|
+|hellaswag|      0|acc     |0.5970|±  |0.0049|
+|         |       |acc_norm|0.7849|±  |0.0041|
+
+78.48% vs 78.59%
+2 hrs 57 mins
+
 hf-causal-experimental (pretrained=meta-llama/Llama-2-7b-chat-hf,use_accelerate=True), limit: None, provide_description: False, num_fewshot: 0, batch_size: 8
 |    Task     |Version|Metric|Value |   |Stderr|
 |-------------|------:|------|-----:|---|-----:|
