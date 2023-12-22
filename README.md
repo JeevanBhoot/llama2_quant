@@ -27,6 +27,9 @@ Request access at https://huggingface.co/meta-llama/Llama-2-7b-chat-hf
 Log in with `huggingface-cli login` before running evaluation harness
 
 ## Evaluation Commands
+On first run, it takes about 10 minutes to download the model weights.
+
+### Llama2 7B
 ```
 python main.py --model hf-causal-experimental --model_args pretrained=meta-llama/Llama-2-7b-chat-hf,use_accelerate=True --tasks hellaswag --device cuda:0 --num_fewshot 10 --batch_size 8
 
@@ -37,7 +40,13 @@ python main.py --model hf-causal-experimental --model_args pretrained=meta-llama
 python main.py --model hf-causal-experimental --model_args pretrained=meta-llama/Llama-2-7b-chat-hf,use_accelerate=True --tasks gsm8k --device cuda:0 --num_fewshot 5 --batch_size 4
 ```
 
+### Llama2 7B GPTQ
+```
+python main.py --model hf-causal-experimental --model_args pretrained=TheBloke/Llama-2-7B-Chat-GPTQ,use_accelerate=True,quantized=True,gptq_use_triton=True --tasks truthfulqa_mc --device cuda:0 --num_fewshot 0 --batch_size 8
+```
+
 ## Results
+### Llama 2 7B
 hf-causal-experimental (pretrained=meta-llama/Llama-2-7b-chat-hf,use_accelerate=True), limit: None, provide_description: False, num_fewshot: 10, batch_size: 8
 |  Task   |Version| Metric |Value |   |Stderr|
 |---------|------:|--------|-----:|---|-----:|
@@ -45,7 +54,7 @@ hf-causal-experimental (pretrained=meta-llama/Llama-2-7b-chat-hf,use_accelerate=
 |         |       |acc_norm|0.7849|±  |0.0041|
 
 78.48% vs 78.59% (HF) //
-2 hrs 57 mins
+2 hrs 57 mins (galileo)
 
 
 hf-causal-experimental (pretrained=meta-llama/Llama-2-7b-chat-hf,use_accelerate=True), limit: None, provide_description: False, num_fewshot: 0, batch_size: 8
@@ -55,7 +64,7 @@ hf-causal-experimental (pretrained=meta-llama/Llama-2-7b-chat-hf,use_accelerate=
 |             |       |mc2   |0.4531|±  |0.0156|
 
 37.77% average vs 38.76% (HF) //
-22 seconds
+22 seconds (galileo)
 
 
 hf-causal-experimental (pretrained=meta-llama/Llama-2-7b-chat-hf,use_accelerate=True), limit: None, provide_description: False, num_fewshot: 5, batch_size: 8
@@ -64,7 +73,7 @@ hf-causal-experimental (pretrained=meta-llama/Llama-2-7b-chat-hf,use_accelerate=
 |winogrande|      0|acc   |0.7269|±  |0.0125|
 
 72.69% vs 74.03% //
-1 min 56 seconds
+1 min 56 seconds (galileo)
 
 
 hf-causal-experimental (pretrained=meta-llama/Llama-2-7b-chat-hf,use_accelerate=True), limit: None, provide_description: False, num_fewshot: 5, batch_size: 4
@@ -73,4 +82,6 @@ hf-causal-experimental (pretrained=meta-llama/Llama-2-7b-chat-hf,use_accelerate=
 |gsm8k|      0|acc   |0.1334|±  |0.0094|
 
 13.34% vs 14.48% //
-43 mins 25 seconds
+43 mins 25 seconds (galileo)
+
+### Llama2 7B GPTQ
