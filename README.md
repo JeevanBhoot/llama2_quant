@@ -87,3 +87,11 @@ hf-causal-experimental (pretrained=meta-llama/Llama-2-7b-chat-hf,use_accelerate=
 43 mins 25 seconds (galileo)
 
 ### Llama2 7B GPTQ
+hf (pretrained=TheBloke/Llama-2-7B-Chat-GPTQ,gptq=True,load_in_4bit=True), gen_kwargs: (), limit: None, num_fewshot: 0, batch_size: 1
+|    Tasks     |Version|Filter|n-shot|Metric|Value |   |Stderr|
+|--------------|-------|------|-----:|------|-----:|---|-----:|
+|truthfulqa_mc1|Yaml   |none  |     0|acc   |0.2901|±  |0.0159|
+|truthfulqa_mc2|Yaml   |none  |     0|acc   |0.4412|±  |0.0156|
+
+44.12% vs 49.95% (Chat AWQ) vs 39.32% (Non-Chat GPTQ) //
+15 mins 25 seconds (brahe GPU:0)
