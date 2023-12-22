@@ -1,3 +1,10 @@
+## Setting Up Miniconda
+```
+wget https://repo.anaconda.com/miniconda/Miniconda3-latest-Linux-x86_64.sh
+bash Miniconda3-latest-Linux-x86_64.sh
+
+```
+
 ## Installing EleutherAI LM Evaluation Harness
 Same version that HuggingFace uses for Open LLM Leaderboard
 ```
