@@ -17,10 +17,11 @@ cd lm-evaluation-harness
 git checkout v0.4.0
 pip install -e .
 pip install gekko
-conda install -c "nvidia/label/cuda-11.7.0" cuda
+# conda install -c "nvidia/label/cuda-11.7.0" cuda
+conda install -c "nvidia/label/cuda-12.1.0" cuda
 pip install "git+https://github.com/PanQiWei/AutoGPTQ.git@v0.6.0"
-pip uninstall triton
-pip install triton==2.1.0
+# pip uninstall triton
+# pip install triton==2.1.0
 ```
 
 ## Llama2 Access
@@ -33,6 +34,12 @@ On first run, it takes about 10 minutes to download the model weights.
 
 ### Llama2 7B
 ```
+lm_eval --model hf --model_args pretrained=meta-llama/Llama-2-7b-chat-hf --tasks arc_challenge --device cuda:0 --num_fewshot 25 --batch_size 1
+
+lm_eval --model hf --model_args pretrained=meta-llama/Llama-2-7b-chat-hf --tasks hellaswag --device cuda:0 --num_fewshot 10 --batch_size 1
+```
+
+```
 python main.py --model hf-causal-experimental --model_args pretrained=meta-llama/Llama-2-7b-chat-hf,use_accelerate=True --tasks hellaswag --device cuda:0 --num_fewshot 10 --batch_size 8
 
 python main.py --model hf-causal-experimental --model_args pretrained=meta-llama/Llama-2-7b-chat-hf,use_accelerate=True --tasks truthfulqa_mc --device cuda:0 --num_fewshot 0 --batch_size 8
@@ -44,7 +51,7 @@ python main.py --model hf-causal-experimental --model_args pretrained=meta-llama
 
 ### Llama2 7B GPTQ
 ```
-lm_eval --model hf --model_args pretrained=TheBloke/Llama-2-7B-Chat-GPTQ,gptq=True,gptq_use_triton=True,load_in_4bit=True --tasks truthfulqa_mc1 --num_fewshot 0 --batch_size 1 --device cuda:0
+lm_eval --model hf --model_args pretrained=TheBloke/Llama-2-7B-Chat-GPTQ,gptq=True,gptq_use_triton=True,load_in_4bit=True --tasks truthfulqa_mc2 --num_fewshot 0 --batch_size 1 --device cuda:0
 ```
 
 ## Results
