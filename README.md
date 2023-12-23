@@ -56,6 +56,21 @@ lm_eval --model hf --model_args pretrained=TheBloke/Llama-2-7B-Chat-GPTQ,gptq=Tr
 
 ## Results
 ### Llama 2 7B
+hf (pretrained=meta-llama/Llama-2-7b-chat-hf), gen_kwargs: (), limit: None, num_fewshot: 25, batch_size: 1
+|    Tasks    |Version|Filter|n-shot| Metric |Value |   |Stderr|
+|-------------|-------|------|-----:|--------|-----:|---|-----:|
+|arc_challenge|Yaml   |none  |    25|acc     |0.5026|±  |0.0146|
+|             |       |none  |    25|acc_norm|0.5358|±  |0.0146|
+acc_norm: 53.58% vs 52.9% (hf) //
+9 mins 45 secs (hypatia)
+
+
+
+
+
+
+
+
 hf-causal-experimental (pretrained=meta-llama/Llama-2-7b-chat-hf,use_accelerate=True), limit: None, provide_description: False, num_fewshot: 10, batch_size: 8
 |  Task   |Version| Metric |Value |   |Stderr|
 |---------|------:|--------|-----:|---|-----:|
