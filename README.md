@@ -61,7 +61,21 @@ python main.py --model hf-causal-experimental --model_args pretrained=meta-llama
 
 ### Llama2 7B GPTQ
 ```
-lm_eval --model hf --model_args pretrained=TheBloke/Llama-2-7B-Chat-GPTQ,gptq=True,gptq_use_triton=True,load_in_4bit=True --tasks truthfulqa_mc2 --num_fewshot 0 --batch_size 1 --device cuda:0
+lm_eval --model hf --model_args pretrained=TheBloke/Llama-2-7B-Chat-GPTQ,gptq=True,gptq_use_triton=True,load_in_4bit=True --tasks arc_challenge --device cuda:0 --num_fewshot 25 --batch_size 1
+```
+
+```
+lm_eval --model hf --model_args pretrained=TheBloke/Llama-2-7B-Chat-GPTQ,gptq=True,load_in_4bit=True --tasks arc_challenge --device cuda:0 --num_fewshot 25 --batch_size 1
+
+lm_eval --model hf --model_args pretrained=TheBloke/Llama-2-7B-Chat-GPTQ,gptq=True,load_in_4bit=True --tasks hellaswag --device cuda:0 --num_fewshot 10 --batch_size 1
+
+lm_eval --model hf --model_args pretrained=TheBloke/Llama-2-7B-Chat-GPTQ,gptq=True,load_in_4bit=True --tasks mmlu --device cuda:0 --num_fewshot 5 --batch_size 1
+
+lm_eval --model hf --model_args pretrained=TheBloke/Llama-2-7B-Chat-GPTQ,gptq=True,load_in_4bit=True --tasks truthfulqa_mc2 --device cuda:0 --batch_size 1
+
+lm_eval --model hf --model_args pretrained=TheBloke/Llama-2-7B-Chat-GPTQ,gptq=True,load_in_4bit=True --tasks winogrande --device cuda:0 --num_fewshot 5 --batch_size 1
+
+lm_eval --model hf --model_args pretrained=TheBloke/Llama-2-7B-Chat-GPTQ,gptq=True,load_in_4bit=True --tasks gsm8k --device cuda:0 --num_fewshot 5 --batch_size 1
 ```
 
 ## Results
@@ -72,6 +86,7 @@ hf (pretrained=meta-llama/Llama-2-7b-chat-hf), gen_kwargs: (), limit: None, num_
 |-------------|-------|------|-----:|--------|-----:|---|-----:|
 |arc_challenge|Yaml   |none  |    25|acc     |0.5026|±  |0.0146|
 |             |       |none  |    25|acc_norm|0.5358|±  |0.0146|
+
 acc_norm: 53.58% vs 52.9% (hf) //
 9 mins 45 secs (hypatia)
 
@@ -80,6 +95,7 @@ hf (pretrained=meta-llama/Llama-2-7b-chat-hf), gen_kwargs: (), limit: None, num_
 |---------|-------|------|-----:|--------|-----:|---|-----:|
 |hellaswag|Yaml   |none  |    10|acc     |0.5927|±  |0.0049|
 |         |       |none  |    10|acc_norm|0.7858|±  |0.0041|
+
 acc_norm: 78.58% vs 78.55% (hf) //
 1 hr 13 mins 10 secs (hypatia)
 
@@ -143,13 +159,27 @@ hf (pretrained=meta-llama/Llama-2-7b-chat-hf), gen_kwargs: (), limit: None, num_
 |us_foreign_policy                  |Yaml   |none  |     5|acc   |0.7100|±  |0.0456|
 |virology                           |Yaml   |none  |     5|acc   |0.4277|±  |0.0385|
 |world_religions                    |Yaml   |none  |     5|acc   |0.7251|±  |0.0342|
-avg acc: 27.4563/57 = 0.4817% vs 48.32% (hf)
+
+avg acc: 27.4563/57 = 0.4817% vs 48.32% (hf) //
 1 hr 27 mins 16 secs (hypatia)
+
+hf (pretrained=meta-llama/Llama-2-7b-chat-hf), gen_kwargs: (), limit: None, num_fewshot: 5, batch_size: 1    
+|      Groups      |Version|Filter|n-shot|Metric|Value |   |Stderr|                                            
+|------------------|-------|------|-----:|------|-----:|---|-----:|                                            
+|mmlu              |N/A    |none  |     0|acc   |0.4724|±  |0.1260|                                            
+| - humanities     |N/A    |none  |     5|acc   |0.4380|±  |0.1478|                                            
+| - other          |N/A    |none  |     5|acc   |0.5472|±  |0.0981|                                            
+| - social_sciences|N/A    |none  |     5|acc   |0.5466|±  |0.0945|                                            
+| - stem           |N/A    |none  |     5|acc   |0.3777|±  |0.0940|  
+
+avg acc: 47.24% vs 48.32% //
+1 hr 27 mins 15 secs (hypatia)
 
 hf (pretrained=meta-llama/Llama-2-7b-chat-hf), gen_kwargs: (), limit: None, num_fewshot: None, batch_size: 1
 |    Tasks     |Version|Filter|n-shot|Metric|Value |   |Stderr|
 |--------------|-------|------|-----:|------|-----:|---|-----:|
 |truthfulqa_mc2|Yaml   |none  |     0|acc   |0.4531|±  |0.0156|
+
 acc: 45.31% vs 45.57% (hf)
 2 mins 44 secs (hypatia)
 
@@ -157,6 +187,7 @@ hf (pretrained=meta-llama/Llama-2-7b-chat-hf), gen_kwargs: (), limit: None, num_
 |  Tasks   |Version|Filter|n-shot|Metric|Value |   |Stderr|
 |----------|-------|------|-----:|------|-----:|---|-----:|
 |winogrande|Yaml   |none  |     5|acc   |0.6638|±  |0.0133|
+
 acc: 66.38% vs 71.74% (hf)
 48 secs
 
@@ -164,12 +195,11 @@ hf (pretrained=meta-llama/Llama-2-7b-chat-hf), gen_kwargs: (), limit: None, num_
 |Tasks|Version|  Filter  |n-shot|  Metric   |Value |   |Stderr|
 |-----|-------|----------|-----:|-----------|-----:|---|-----:|
 |gsm8k|Yaml   |get-answer|     5|exact_match|0.2274|±  |0.0115|
+
 exact_match: 22.74% vs 7.35% (hf - acc?)
 
 
-
-
-#### HF version
+#### HF version (v0.3.0?)
 hf-causal-experimental (pretrained=meta-llama/Llama-2-7b-chat-hf,use_accelerate=True), limit: None, provide_description: False, num_fewshot: 10, batch_size: 8
 |  Task   |Version| Metric |Value |   |Stderr|
 |---------|------:|--------|-----:|---|-----:|
@@ -207,15 +237,71 @@ hf-causal-experimental (pretrained=meta-llama/Llama-2-7b-chat-hf,use_accelerate=
 13.34% vs 7.35% (hf) //
 43 mins 25 seconds (galileo)
 
-### Llama2 7B GPTQ
-hf (pretrained=TheBloke/Llama-2-7B-Chat-GPTQ,gptq=True,load_in_4bit=True), gen_kwargs: (), limit: None, num_fewshot: 0, batch_size: 1
+### Llama2 7B GPTQ (v0.4.0)
+#### With Triton
+hf (pretrained=TheBloke/Llama-2-7B-Chat-GPTQ,gptq=True,gptq_use_triton=True,load_in_4bit=True), gen_kwargs: (), limit: None, num_fewshot: 25, batch_size: 1
+|    Tasks    |Version|Filter|n-shot| Metric |Value |   |Stderr|
+|-------------|-------|------|-----:|--------|-----:|---|-----:|
+|arc_challenge|Yaml   |none  |    25|acc     |0.4718|±  |0.0146|
+|             |       |none  |    25|acc_norm|0.4949|±  |0.0146|
+
+acc_norm: 49.49% //
+18 mins 20 secs
+
+#### Without Triton
+hf (pretrained=TheBloke/Llama-2-7B-Chat-GPTQ,gptq=True,load_in_4bit=True), gen_kwargs: (), limit: None, num_fewshot: 25, batch_size: 1
+|    Tasks    |Version|Filter|n-shot| Metric |Value |   |Stderr|
+|-------------|-------|------|-----:|--------|-----:|---|-----:|
+|arc_challenge|Yaml   |none  |    25|acc     |0.4744|±  |0.0146|
+|             |       |none  |    25|acc_norm|0.4949|±  |0.0146|
+
+acc_norm: 49.49% //
+7 mins 45 secs (hypatia)
+
+hf (pretrained=TheBloke/Llama-2-7B-Chat-GPTQ,gptq=True,load_in_4bit=True), gen_kwargs: (), limit: None, num_fewshot: 10, batch_size: 1
+|  Tasks  |Version|Filter|n-shot| Metric |Value |   |Stderr|
+|---------|-------|------|-----:|--------|-----:|---|-----:|
+|hellaswag|Yaml   |none  |    10|acc     |0.5488|±  |0.0050|
+|         |       |none  |    10|acc_norm|0.7245|±  |0.0045|
+
+acc_norm: 74.25% //
+1 hr 16 secs (hypatia)
+
+hf (pretrained=TheBloke/Llama-2-7B-Chat-GPTQ,gptq=True,load_in_4bit=True), gen_kwargs: (), limit: None, num_fewshot: 5, batch_size: 1 
+|      Groups      |Version|Filter|n-shot|Metric|Value |   |Stderr|
+|------------------|-------|------|-----:|------|-----:|---|-----:|
+|mmlu              |N/A    |none  |     0|acc   |0.4311|±  |0.1268|
+| - humanities     |N/A    |none  |     5|acc   |0.3781|±  |0.1567|
+| - other          |N/A    |none  |     5|acc   |0.5146|±  |0.0993|
+| - social_sciences|N/A    |none  |     5|acc   |0.5018|±  |0.0855|
+| - stem           |N/A    |none  |     5|acc   |0.3587|±  |0.0913|
+
+avg acc: 43.11% //
+1 hr 15 mins 17 secs (hypatia)
+
+hf (pretrained=TheBloke/Llama-2-7B-Chat-GPTQ,gptq=True,load_in_4bit=True), gen_kwargs: (), limit: None, num_fewshot: None, batch_size: 1
 |    Tasks     |Version|Filter|n-shot|Metric|Value |   |Stderr|
 |--------------|-------|------|-----:|------|-----:|---|-----:|
-|truthfulqa_mc1|Yaml   |none  |     0|acc   |0.2901|±  |0.0159|
-|truthfulqa_mc2|Yaml   |none  |     0|acc   |0.4412|±  |0.0156|
+|truthfulqa_mc2|Yaml   |none  |     0|acc   |0.4411|±  |0.0156|
 
-44.12% vs 49.95% (Chat AWQ) vs 39.32% (Non-Chat GPTQ) //
-15 mins 25 seconds (brahe GPU:0)
+acc: 44.11% //
+3 mins 45 secs (hypatia)
+
+hf (pretrained=TheBloke/Llama-2-7B-Chat-GPTQ,gptq=True,load_in_4bit=True), gen_kwargs: (), limit: None, num_fewshot: 5, batch_size: 1
+|  Tasks   |Version|Filter|n-shot|Metric|Value |   |Stderr|
+|----------|-------|------|-----:|------|-----:|---|-----:|
+|winogrande|Yaml   |none  |     5|acc   |0.6535|±  |0.0134|
+
+acc: 65.35% //
+35 secs (hypatia)
+
+hf (pretrained=TheBloke/Llama-2-7B-Chat-GPTQ,gptq=True,load_in_4bit=True), gen_kwargs: (), limit: None, num_fewshot: 5, batch_size: 1
+|Tasks|Version|  Filter  |n-shot|  Metric   |Value |   |Stderr|
+|-----|-------|----------|-----:|-----------|-----:|---|-----:|
+|gsm8k|Yaml   |get-answer|     5|exact_match|0.1516|±  |0.0099|
+
+exact_match: 15.16% //
+29 mins 53 secs (hypatia)
 
 ### HuggingFace Open LLM Leaderboard
 | Model                 | Average | ARC  | HellaSwag | MMLU | TruthfulQA | Winogrande | GSM8K |
