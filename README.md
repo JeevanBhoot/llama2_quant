@@ -15,6 +15,7 @@ Newer version than what HuggingFace uses for Open LLM Leaderboard
 git clone https://github.com/EleutherAI/lm-evaluation-harness
 cd lm-evaluation-harness
 git checkout v0.4.0
+# git checkout b281b09
 pip install -e .
 pip install gekko
 # conda install -c "nvidia/label/cuda-11.7.0" cuda
@@ -50,13 +51,13 @@ lm_eval --model hf --model_args pretrained=meta-llama/Llama-2-7b-chat-hf --tasks
 ```
 
 ```
-python main.py --model hf-causal-experimental --model_args pretrained=meta-llama/Llama-2-7b-chat-hf,use_accelerate=True --tasks hellaswag --device cuda:0 --num_fewshot 10 --batch_size 8
+python main.py --model hf-causal-experimental --model_args pretrained=meta-llama/Llama-2-7b-chat-hf --tasks hellaswag --device cuda:0 --num_fewshot 10 --batch_size 1
 
-python main.py --model hf-causal-experimental --model_args pretrained=meta-llama/Llama-2-7b-chat-hf,use_accelerate=True --tasks truthfulqa_mc --device cuda:0 --num_fewshot 0 --batch_size 8
+python main.py --model hf-causal-experimental --model_args pretrained=meta-llama/Llama-2-7b-chat-hf --tasks truthfulqa_mc --device cuda:0 --num_fewshot 0 --batch_size 1
 
-python main.py --model hf-causal-experimental --model_args pretrained=meta-llama/Llama-2-7b-chat-hf,use_accelerate=True --tasks winogrande --device cuda:0 --num_fewshot 5 --batch_size 8
+python main.py --model hf-causal-experimental --model_args pretrained=meta-llama/Llama-2-7b-chat-hf --tasks winogrande --device cuda:0 --num_fewshot 5 --batch_size 1
 
-python main.py --model hf-causal-experimental --model_args pretrained=meta-llama/Llama-2-7b-chat-hf,use_accelerate=True --tasks gsm8k --device cuda:0 --num_fewshot 5 --batch_size 4
+python main.py --model hf-causal-experimental --model_args pretrained=meta-llama/Llama-2-7b-chat-hf --tasks gsm8k --device cuda:0 --num_fewshot 5 --batch_size 1
 ```
 
 ### Llama2 7B GPTQ
@@ -76,6 +77,20 @@ lm_eval --model hf --model_args pretrained=TheBloke/Llama-2-7B-Chat-GPTQ,gptq=Tr
 lm_eval --model hf --model_args pretrained=TheBloke/Llama-2-7B-Chat-GPTQ,gptq=True,load_in_4bit=True --tasks winogrande --device cuda:0 --num_fewshot 5 --batch_size 1
 
 lm_eval --model hf --model_args pretrained=TheBloke/Llama-2-7B-Chat-GPTQ,gptq=True,load_in_4bit=True --tasks gsm8k --device cuda:0 --num_fewshot 5 --batch_size 1
+```
+
+```
+python main.py --model hf-causal-experimental --model_args pretrained=TheBloke/Llama-2-7B-Chat-GPTQ,quantized=model.safetensors,load_in_4bit=True --tasks arc_challenge --device cuda:0 --num_fewshot 25 --batch_size 1
+
+python main.py --model hf-causal-experimental --model_args pretrained=TheBloke/Llama-2-7B-Chat-GPTQ,quantized=model.safetensors,load_in_4bit=True --tasks hellaswag --device cuda:0 --num_fewshot 10 --batch_size 1
+
+python main.py --model hf-causal-experimental --model_args pretrained=TheBloke/Llama-2-7B-Chat-GPTQ,quantized=model.safetensors,load_in_4bit=True --tasks hendrycksTest-abstract_algebra,hendrycksTest-anatomy,hendrycksTest-astronomy,hendrycksTest-business_ethics,hendrycksTest-clinical_knowledge,hendrycksTest-college_biology,hendrycksTest-college_chemistry,hendrycksTest-college_computer_science,hendrycksTest-college_mathematics,hendrycksTest-college_medicine,hendrycksTest-college_physics,hendrycksTest-computer_security,hendrycksTest-conceptual_physics,hendrycksTest-econometrics,hendrycksTest-electrical_engineering,hendrycksTest-elementary_mathematics,hendrycksTest-formal_logic,hendrycksTest-global_facts,hendrycksTest-high_school_biology,hendrycksTest-high_school_chemistry,hendrycksTest-high_school_computer_science,hendrycksTest-high_school_european_history,hendrycksTest-high_school_geography,hendrycksTest-high_school_government_and_politics,hendrycksTest-high_school_macroeconomics,hendrycksTest-high_school_mathematics,hendrycksTest-high_school_microeconomics,hendrycksTest-high_school_physics,hendrycksTest-high_school_psychology,hendrycksTest-high_school_statistics,hendrycksTest-high_school_us_history,hendrycksTest-high_school_world_history,hendrycksTest-human_aging,hendrycksTest-human_sexuality,hendrycksTest-international_law,hendrycksTest-jurisprudence,hendrycksTest-logical_fallacies,hendrycksTest-machine_learning,hendrycksTest-management,hendrycksTest-marketing,hendrycksTest-medical_genetics,hendrycksTest-miscellaneous,hendrycksTest-moral_disputes,hendrycksTest-moral_scenarios,hendrycksTest-nutrition,hendrycksTest-philosophy,hendrycksTest-prehistory,hendrycksTest-professional_accounting,hendrycksTest-professional_law,hendrycksTest-professional_medicine,hendrycksTest-professional_psychology,hendrycksTest-public_relations,hendrycksTest-security_studies,hendrycksTest-sociology,hendrycksTest-us_foreign_policy,hendrycksTest-virology,hendrycksTest-world_religions --device cuda:0 --num_fewshot 5 --batch_size 1
+
+python main.py --model hf-causal-experimental --model_args pretrained=TheBloke/Llama-2-7B-Chat-GPTQ,quantized=model.safetensors,load_in_4bit=True --tasks truthfulqa_mc --device cuda:0 --num_fewshot 0 --batch_size 1
+                                              
+python main.py --model hf-causal-experimental --model_args pretrained=TheBloke/Llama-2-7B-Chat-GPTQ,quantized=model.safetensors,load_in_4bit=True --tasks winogrande --device cuda:0 --num_fewshot 5 --batch_size 1
+
+python main.py --model hf-causal-experimental --model_args pretrained=TheBloke/Llama-2-7B-Chat-GPTQ,quantized=model.safetensors,load_in_4bit=True --tasks gsm8k --device cuda:0 --num_fewshot 5 --batch_size 1
 ```
 
 ## Results
@@ -196,10 +211,11 @@ hf (pretrained=meta-llama/Llama-2-7b-chat-hf), gen_kwargs: (), limit: None, num_
 |-----|-------|----------|-----:|-----------|-----:|---|-----:|
 |gsm8k|Yaml   |get-answer|     5|exact_match|0.2274|±  |0.0115|
 
-exact_match: 22.74% vs 7.35% (hf - acc?)
+exact_match: 22.74% vs 7.35% (hf - acc?) //
+54 mins 35 secs
 
 
-#### HF version (v0.3.0?)
+#### HF version (commit b281b09)
 hf-causal-experimental (pretrained=meta-llama/Llama-2-7b-chat-hf,use_accelerate=True), limit: None, provide_description: False, num_fewshot: 10, batch_size: 8
 |  Task   |Version| Metric |Value |   |Stderr|
 |---------|------:|--------|-----:|---|-----:|
@@ -210,14 +226,14 @@ hf-causal-experimental (pretrained=meta-llama/Llama-2-7b-chat-hf,use_accelerate=
 2 hrs 57 mins (galileo)
 
 
-hf-causal-experimental (pretrained=meta-llama/Llama-2-7b-chat-hf,use_accelerate=True), limit: None, provide_description: False, num_fewshot: 0, batch_size: 8
+hf-causal-experimental (pretrained=meta-llama/Llama-2-7b-chat-hf), limit: None, provide_description: False, num_fewshot: 0, batch_size: 1
 |    Task     |Version|Metric|Value |   |Stderr|
 |-------------|------:|------|-----:|---|-----:|
-|truthfulqa_mc|      1|mc1   |0.3023|±  |0.0161|
+|truthfulqa_mc|      1|mc1   |0.3011|±  |0.0161|
 |             |       |mc2   |0.4531|±  |0.0156|
 
 mc2 acc: 45.31% vs 45.57% (HF) //
-22 seconds (galileo)
+2 mins 59 seconds (hypatia)
 
 
 hf-causal-experimental (pretrained=meta-llama/Llama-2-7b-chat-hf,use_accelerate=True), limit: None, provide_description: False, num_fewshot: 5, batch_size: 8
@@ -237,8 +253,8 @@ hf-causal-experimental (pretrained=meta-llama/Llama-2-7b-chat-hf,use_accelerate=
 13.34% vs 7.35% (hf) //
 43 mins 25 seconds (galileo)
 
-### Llama2 7B GPTQ (v0.4.0)
-#### With Triton
+### Llama2 7B GPTQ
+#### v0.4.0 with Triton
 hf (pretrained=TheBloke/Llama-2-7B-Chat-GPTQ,gptq=True,gptq_use_triton=True,load_in_4bit=True), gen_kwargs: (), limit: None, num_fewshot: 25, batch_size: 1
 |    Tasks    |Version|Filter|n-shot| Metric |Value |   |Stderr|
 |-------------|-------|------|-----:|--------|-----:|---|-----:|
@@ -248,7 +264,7 @@ hf (pretrained=TheBloke/Llama-2-7B-Chat-GPTQ,gptq=True,gptq_use_triton=True,load
 acc_norm: 49.49% //
 18 mins 20 secs
 
-#### Without Triton
+#### v0.4.0 without Triton
 hf (pretrained=TheBloke/Llama-2-7B-Chat-GPTQ,gptq=True,load_in_4bit=True), gen_kwargs: (), limit: None, num_fewshot: 25, batch_size: 1
 |    Tasks    |Version|Filter|n-shot| Metric |Value |   |Stderr|
 |-------------|-------|------|-----:|--------|-----:|---|-----:|
@@ -303,7 +319,40 @@ hf (pretrained=TheBloke/Llama-2-7B-Chat-GPTQ,gptq=True,load_in_4bit=True), gen_k
 exact_match: 15.16% //
 29 mins 53 secs (hypatia)
 
+#### HF Version (commit b281b09)
+
+hf-causal-experimental (pretrained=TheBloke/Llama-2-7B-Chat-GPTQ,quantized=model.safetensors,load_in_4bit=True), limit: None, provide_description: False, num_fewshot: 0, batch_size: 1
+|    Task     |Version|Metric|Value |   |Stderr|
+|-------------|------:|------|-----:|---|-----:|
+|truthfulqa_mc|      1|mc1   |0.2901|±  |0.0159|
+|             |       |mc2   |0.4411|±  |0.0156|
+mc2 acc: 44.11% //
+4 mins 1 sec (hypatia)
+
 ### HuggingFace Open LLM Leaderboard
 | Model                 | Average | ARC  | HellaSwag | MMLU | TruthfulQA | Winogrande | GSM8K |
 |-----------------------|---------|------|-----------|------|------------|------------|-------|
 | meta-llama/llama-2-7b-chat-hf | 50.74    | 52.9 | 78.55     | 48.32 | 45.57       | 71.74      | 7.35  |
+| TheBloke/Llama-2-7B-GPTQ         | 48.48   | 52.05| 77.59     | 43.99| 39.32       | 72.93      | 5     |
+| TheBloke/Llama-2-7b-Chat-AWQ     | 29.14   | 27.22| 25.48     | 24.67| 49.95       | 47.51      | 0     |
+
+
+| Model                 |Harness Version| Average | ARC  | HellaSwag | MMLU | TruthfulQA | Winogrande | GSM8K |
+|-----------------------|----------|---------|------|-----------|------|------------|------------|-------|
+| meta-llama/llama-2-7b-chat-hf | v0.4.0   | 52.31 | 53.58 | 78.58  | 47.24* | 45.31  | 66.38  | 22.74** |
+| meta-llama/llama-2-7b-chat-hf | b281b09  |       |       | 78.49  |        | 45.31  | 72.69  | 13.34   |
+| TheBloke/Llama-2-7B-Chat-GPTQ | v0.4.0   | 48.58 | 49.49 | 74.25  | 43.11* | 44.11  | 65.35  | 15.16** |
+| TheBloke/Llama-2-7B-Chat-GPTQ | b281b09  |       |       |        |        | 44.11  |        |         |
+
+*weighted (over num samples) average (vs unweighted avg)
+**exact match metric (vs average)
+v0.4.0 Winogrande - new preprocessing?
+
+Time taken to evaluate:
+
+| Model                            | Harness Version | ARC  | HellaSwag | MMLU | TruthfulQA | Winogrande | GSM8K |
+|----------------------------------|-----------------|------|-----------|------|------------|------------|-------|
+| meta-llama/llama-2-7b-chat-hf    | v0.4.0          | 9m45s | 1h13m10s | 1h27m15s | 2m44s | 48s | 54m35s |
+| meta-llama/llama-2-7b-chat-hf    | b281b09         |      |  2h57m (galileo)  |        |  2m59s | 1m56s (galileo)  | 43m25s (galileo) |
+| TheBloke/Llama-2-7B-Chat-GPTQ    | v0.4.0          | 7m45s | 1h00m16s | 1h15m17s | 3m45s | 35s | 29m53s |
+| TheBloke/Llama-2-7B-Chat-GPTQ    | b281b09         |       |          |          | 4m01s |     |        |
