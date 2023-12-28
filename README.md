@@ -329,6 +329,134 @@ hf-causal-experimental (pretrained=TheBloke/Llama-2-7B-Chat-GPTQ,quantized=model
 acc_norm: 51.28%
 real	11m28.755s
 
+|  Task   |Version| Metric |Value |   |Stderr|
+|---------|------:|--------|-----:|---|-----:|
+|hellaswag|      0|acc     |0.5474|±  |0.0050|
+|         |       |acc_norm|0.7201|±  |0.0045|
+
+acc_norm: 72.01%
+real	86m12.379s
+
+hf-causal-experimental (pretrained=TheBloke/Llama-2-7B-Chat-GPTQ,quantized=model.safetensors,load_in_4bit=True), limit: None, provide_description: False, num_fewshot: 5, batch_size: 1
+|                      Task                       |Version| Metric |Value |   |Stderr|
+|-------------------------------------------------|------:|--------|-----:|---|-----:|
+|hendrycksTest-abstract_algebra                   |      1|acc     |0.3000|±  |0.0461|
+|                                                 |       |acc_norm|0.3000|±  |0.0461|
+|hendrycksTest-anatomy                            |      1|acc     |0.4370|±  |0.0428|
+|                                                 |       |acc_norm|0.4370|±  |0.0428|
+|hendrycksTest-astronomy                          |      1|acc     |0.4539|±  |0.0405|
+|                                                 |       |acc_norm|0.4539|±  |0.0405|
+|hendrycksTest-business_ethics                    |      1|acc     |0.3400|±  |0.0476|
+|                                                 |       |acc_norm|0.3400|±  |0.0476|
+|hendrycksTest-clinical_knowledge                 |      1|acc     |0.4868|±  |0.0308|
+|                                                 |       |acc_norm|0.4868|±  |0.0308|
+|hendrycksTest-college_biology                    |      1|acc     |0.4722|±  |0.0417|
+|                                                 |       |acc_norm|0.4722|±  |0.0417|
+|hendrycksTest-college_chemistry                  |      1|acc     |0.2300|±  |0.0423|
+|                                                 |       |acc_norm|0.2300|±  |0.0423|
+|hendrycksTest-college_computer_science           |      1|acc     |0.3500|±  |0.0479|
+|                                                 |       |acc_norm|0.3500|±  |0.0479|
+|hendrycksTest-college_mathematics                |      1|acc     |0.3000|±  |0.0461|
+|                                                 |       |acc_norm|0.3000|±  |0.0461|
+|hendrycksTest-college_medicine                   |      1|acc     |0.3815|±  |0.0370|
+|                                                 |       |acc_norm|0.3815|±  |0.0370|
+|hendrycksTest-college_physics                    |      1|acc     |0.2157|±  |0.0409|
+|                                                 |       |acc_norm|0.2157|±  |0.0409|
+|hendrycksTest-computer_security                  |      1|acc     |0.5400|±  |0.0501|
+|                                                 |       |acc_norm|0.5400|±  |0.0501|
+|hendrycksTest-conceptual_physics                 |      1|acc     |0.3915|±  |0.0319|
+|                                                 |       |acc_norm|0.3915|±  |0.0319|
+|hendrycksTest-econometrics                       |      1|acc     |0.3333|±  |0.0443|
+|                                                 |       |acc_norm|0.3333|±  |0.0443|
+|hendrycksTest-electrical_engineering             |      1|acc     |0.4069|±  |0.0409|
+|                                                 |       |acc_norm|0.4069|±  |0.0409|
+|hendrycksTest-elementary_mathematics             |      1|acc     |0.2751|±  |0.0230|
+|                                                 |       |acc_norm|0.2751|±  |0.0230|
+|hendrycksTest-formal_logic                       |      1|acc     |0.2302|±  |0.0376|
+|                                                 |       |acc_norm|0.2302|±  |0.0376|
+|hendrycksTest-global_facts                       |      1|acc     |0.3700|±  |0.0485|
+|                                                 |       |acc_norm|0.3700|±  |0.0485|
+|hendrycksTest-high_school_biology                |      1|acc     |0.5194|±  |0.0284|
+|                                                 |       |acc_norm|0.5194|±  |0.0284|
+|hendrycksTest-high_school_chemistry              |      1|acc     |0.3251|±  |0.0330|
+|                                                 |       |acc_norm|0.3251|±  |0.0330|
+|hendrycksTest-high_school_computer_science       |      1|acc     |0.4100|±  |0.0494|
+|                                                 |       |acc_norm|0.4100|±  |0.0494|
+|hendrycksTest-high_school_european_history       |      1|acc     |0.2364|±  |0.0332|
+|                                                 |       |acc_norm|0.2364|±  |0.0332|
+|hendrycksTest-high_school_geography              |      1|acc     |0.5808|±  |0.0352|
+|                                                 |       |acc_norm|0.5808|±  |0.0352|
+|hendrycksTest-high_school_government_and_politics|      1|acc     |0.6269|±  |0.0349|
+|                                                 |       |acc_norm|0.6269|±  |0.0349|
+|hendrycksTest-high_school_macroeconomics         |      1|acc     |0.3795|±  |0.0246|
+|                                                 |       |acc_norm|0.3795|±  |0.0246|
+|hendrycksTest-high_school_mathematics            |      1|acc     |0.2481|±  |0.0263|
+|                                                 |       |acc_norm|0.2481|±  |0.0263|
+|hendrycksTest-high_school_microeconomics         |      1|acc     |0.3950|±  |0.0318|
+|                                                 |       |acc_norm|0.3950|±  |0.0318|
+|hendrycksTest-high_school_physics                |      1|acc     |0.2980|±  |0.0373|
+|                                                 |       |acc_norm|0.2980|±  |0.0373|
+|hendrycksTest-high_school_psychology             |      1|acc     |0.6147|±  |0.0209|
+|                                                 |       |acc_norm|0.6147|±  |0.0209|
+|hendrycksTest-high_school_statistics             |      1|acc     |0.3102|±  |0.0315|
+|                                                 |       |acc_norm|0.3102|±  |0.0315|
+|hendrycksTest-high_school_us_history             |      1|acc     |0.6176|±  |0.0341|
+|                                                 |       |acc_norm|0.6176|±  |0.0341|
+|hendrycksTest-high_school_world_history          |      1|acc     |0.6287|±  |0.0315|
+|                                                 |       |acc_norm|0.6287|±  |0.0315|
+|hendrycksTest-human_aging                        |      1|acc     |0.5695|±  |0.0332|
+|                                                 |       |acc_norm|0.5695|±  |0.0332|
+|hendrycksTest-human_sexuality                    |      1|acc     |0.4885|±  |0.0438|
+|                                                 |       |acc_norm|0.4885|±  |0.0438|
+|hendrycksTest-international_law                  |      1|acc     |0.5868|±  |0.0450|
+|                                                 |       |acc_norm|0.5868|±  |0.0450|
+|hendrycksTest-jurisprudence                      |      1|acc     |0.5648|±  |0.0479|
+|                                                 |       |acc_norm|0.5648|±  |0.0479|
+|hendrycksTest-logical_fallacies                  |      1|acc     |0.4724|±  |0.0392|
+|                                                 |       |acc_norm|0.4724|±  |0.0392|
+|hendrycksTest-machine_learning                   |      1|acc     |0.3482|±  |0.0452|
+|                                                 |       |acc_norm|0.3482|±  |0.0452|
+|hendrycksTest-management                         |      1|acc     |0.5728|±  |0.0490|
+|                                                 |       |acc_norm|0.5728|±  |0.0490|
+|hendrycksTest-marketing                          |      1|acc     |0.6880|±  |0.0304|
+|                                                 |       |acc_norm|0.6880|±  |0.0304|
+|hendrycksTest-medical_genetics                   |      1|acc     |0.4400|±  |0.0499|
+|                                                 |       |acc_norm|0.4400|±  |0.0499|
+|hendrycksTest-miscellaneous                      |      1|acc     |0.6564|±  |0.0170|
+|                                                 |       |acc_norm|0.6564|±  |0.0170|
+|hendrycksTest-moral_disputes                     |      1|acc     |0.4913|±  |0.0269|
+|                                                 |       |acc_norm|0.4913|±  |0.0269|
+|hendrycksTest-moral_scenarios                    |      1|acc     |0.2447|±  |0.0144|
+|                                                 |       |acc_norm|0.2447|±  |0.0144|
+|hendrycksTest-nutrition                          |      1|acc     |0.4837|±  |0.0286|
+|                                                 |       |acc_norm|0.4837|±  |0.0286|
+|hendrycksTest-philosophy                         |      1|acc     |0.5627|±  |0.0282|
+|                                                 |       |acc_norm|0.5627|±  |0.0282|
+|hendrycksTest-prehistory                         |      1|acc     |0.5556|±  |0.0276|
+|                                                 |       |acc_norm|0.5556|±  |0.0276|
+|hendrycksTest-professional_accounting            |      1|acc     |0.3582|±  |0.0286|
+|                                                 |       |acc_norm|0.3582|±  |0.0286|
+|hendrycksTest-professional_law                   |      1|acc     |0.2379|±  |0.0109|
+|                                                 |       |acc_norm|0.2379|±  |0.0109|
+|hendrycksTest-professional_medicine              |      1|acc     |0.4154|±  |0.0299|
+|                                                 |       |acc_norm|0.4154|±  |0.0299|
+|hendrycksTest-professional_psychology            |      1|acc     |0.4542|±  |0.0201|
+|                                                 |       |acc_norm|0.4542|±  |0.0201|
+|hendrycksTest-public_relations                   |      1|acc     |0.5182|±  |0.0479|
+|                                                 |       |acc_norm|0.5182|±  |0.0479|
+|hendrycksTest-security_studies                   |      1|acc     |0.4653|±  |0.0319|
+|                                                 |       |acc_norm|0.4653|±  |0.0319|
+|hendrycksTest-sociology                          |      1|acc     |0.5672|±  |0.0350|
+|                                                 |       |acc_norm|0.5672|±  |0.0350|
+|hendrycksTest-us_foreign_policy                  |      1|acc     |0.6600|±  |0.0476|
+|                                                 |       |acc_norm|0.6600|±  |0.0476|
+|hendrycksTest-virology                           |      1|acc     |0.3976|±  |0.0381|
+|                                                 |       |acc_norm|0.3976|±  |0.0381|
+|hendrycksTest-world_religions                    |      1|acc     |0.6901|±  |0.0355|
+|                                                 |       |acc_norm|0.6901|±  |0.0355|
+
+avg acc = 25.194/57 = 44.2%
+real	106m48.030s
 
 hf-causal-experimental (pretrained=TheBloke/Llama-2-7B-Chat-GPTQ,quantized=model.safetensors,load_in_4bit=True), limit: None, provide_description: False, num_fewshot: 0, batch_size: 1
 |    Task     |Version|Metric|Value |   |Stderr|
@@ -336,8 +464,24 @@ hf-causal-experimental (pretrained=TheBloke/Llama-2-7B-Chat-GPTQ,quantized=model
 |truthfulqa_mc|      1|mc1   |0.2901|±  |0.0159|
 |             |       |mc2   |0.4411|±  |0.0156|
 
-mc2 acc: 44.11% //
-4 mins 1 sec (hypatia)
+mc2 acc: 44.11%
+real	4m28.666s
+
+hf-causal-experimental (pretrained=TheBloke/Llama-2-7B-Chat-GPTQ,quantized=model.safetensors,load_in_4bit=True), limit: None, provide_description: False, num_fewshot: 5, batch_size: 1
+|   Task   |Version|Metric|Value|   |Stderr|
+|----------|------:|------|----:|---|-----:|
+|winogrande|      0|acc   |0.708|±  |0.0128|
+
+acc: 70.8%
+real	2m4.967s
+
+hf-causal-experimental (pretrained=TheBloke/Llama-2-7B-Chat-GPTQ,quantized=model.safetensors,load_in_4bit=True), limit: None, provide_description: False, num_fewshot: 5, batch_size: 1
+|Task |Version|Metric|Value |   |Stderr|
+|-----|------:|------|-----:|---|-----:|
+|gsm8k|      0|acc   |0.1312|±  |0.0093|
+
+acc: 13.12%
+real	29m29.713s
 
 ### HuggingFace Open LLM Leaderboard
 | Model                 | Average | ARC  | HellaSwag | MMLU | TruthfulQA | Winogrande | GSM8K |
@@ -352,7 +496,7 @@ mc2 acc: 44.11% //
 | meta-llama/llama-2-7b-chat-hf | v0.4.0   | 52.31 | 53.58 | 78.58  | 47.24* | 45.31  | 66.38  | 22.74** |
 | meta-llama/llama-2-7b-chat-hf | b281b09  |       |       | 78.49  |        | 45.31  | 72.69  | 13.34   |
 | TheBloke/Llama-2-7B-Chat-GPTQ | v0.4.0   | 48.58 | 49.49 | 74.25  | 43.11* | 44.11  | 65.35  | 15.16** |
-| TheBloke/Llama-2-7B-Chat-GPTQ | b281b09  |       |       |        |        | 44.11  |        |         |
+| TheBloke/Llama-2-7B-Chat-GPTQ | b281b09  |       | 51.28 | 72.01  | 44.20  | 44.11  | 70.80  | 13.12   |
 
 *weighted (over num samples) average (vs unweighted avg)
 **exact match metric (vs average)
@@ -362,7 +506,7 @@ Time taken to evaluate:
 
 | Model                            | Harness Version | ARC  | HellaSwag | MMLU | TruthfulQA | Winogrande | GSM8K |
 |----------------------------------|-----------------|------|-----------|------|------------|------------|-------|
-| meta-llama/llama-2-7b-chat-hf    | v0.4.0          | 9m45s | 1h13m10s | 1h27m15s | 2m44s | 48s | 54m35s |
-| meta-llama/llama-2-7b-chat-hf    | b281b09         |      |  2h57m (galileo)  |        |  2m59s | 1m56s (galileo)  | 43m25s (galileo) |
-| TheBloke/Llama-2-7B-Chat-GPTQ    | v0.4.0          | 7m45s | 1h00m16s | 1h15m17s | 3m45s | 35s | 29m53s |
-| TheBloke/Llama-2-7B-Chat-GPTQ    | b281b09         |       |          |          | 4m01s |     |        |
+| meta-llama/llama-2-7b-chat-hf    | v0.4.0          | 9m45s  | 1h13m10s | 1h27m15s | 2m44s | 48s   | 54m35s |
+| meta-llama/llama-2-7b-chat-hf    | b281b09         |        |          |          |       |       |        |
+| TheBloke/Llama-2-7B-Chat-GPTQ    | v0.4.0          | 7m45s  | 1h00m16s | 1h15m17s | 3m45s | 35s   | 29m53s |
+| TheBloke/Llama-2-7B-Chat-GPTQ    | b281b09         | 11m29s | 1h26m12s | 1h46m48s | 4m29s | 2m05s | 29m30s |
