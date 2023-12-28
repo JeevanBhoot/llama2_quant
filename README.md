@@ -320,12 +320,22 @@ exact_match: 15.16% //
 29 mins 53 secs (hypatia)
 
 #### HF Version (commit b281b09)
+hf-causal-experimental (pretrained=TheBloke/Llama-2-7B-Chat-GPTQ,quantized=model.safetensors,load_in_4bit=True), limit: None, provide_description: False, num_fewshot: 25, batch_size: 1
+|    Task     |Version| Metric |Value |   |Stderr|
+|-------------|------:|--------|-----:|---|-----:|
+|arc_challenge|      0|acc     |0.4881|±  |0.0146|
+|             |       |acc_norm|0.5128|±  |0.0146|
+
+acc_norm: 51.28%
+real	11m28.755s
+
 
 hf-causal-experimental (pretrained=TheBloke/Llama-2-7B-Chat-GPTQ,quantized=model.safetensors,load_in_4bit=True), limit: None, provide_description: False, num_fewshot: 0, batch_size: 1
 |    Task     |Version|Metric|Value |   |Stderr|
 |-------------|------:|------|-----:|---|-----:|
 |truthfulqa_mc|      1|mc1   |0.2901|±  |0.0159|
 |             |       |mc2   |0.4411|±  |0.0156|
+
 mc2 acc: 44.11% //
 4 mins 1 sec (hypatia)
 
