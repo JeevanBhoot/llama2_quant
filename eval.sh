@@ -1,15 +1,15 @@
 #!/bin/bash
 
-# Check if the correct number of arguments were provided
-if [ "$#" -ne 3 ]; then
-    echo "Usage: $0 <harness_version> <gptq_flag> <output_filename>"
+# Check if at least two arguments were provided
+if [ "$#" -lt 2 ]; then
+    echo "Usage: $0 <harness_version> <gptq_flag> [output_filename]"
     exit 1
 fi
 
 # Assign arguments to variables
 harness_version="$1"
 gptq_flag="$2"
-output_filename="logs/${3:-output_${harness_version}_${gptq_flag}_$(date +%Y%m%d_%H%M%S).log}"
+output_filename="${3:-logs/output_${harness_version}_gptq${gptq_flag}_$(date +%Y%m%d_%H%M%S).log}"
 
 # Create the 'logs' directory if it does not exist
 mkdir -p logs

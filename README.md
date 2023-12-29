@@ -35,7 +35,7 @@ On first run, it takes about 10 minutes to download the model weights.
 
 Run the entire HuggingFace Open LLM Leaderboard evaluation suite with the following command:
 ```
-bash ./eval.sh <harness_version> <gptq_flag> <output_filename>
+bash eval.sh <harness_version> <gptq_flag> <output_filename>
 ```
 `<harness_version>` is either `v0.4.0` or `b281b09`.
 
@@ -44,6 +44,14 @@ Else, `meta-llama/Llama-2-7b-chat-hf` weights will be used.
 
 The terminal output is saved to `<output_filename` inside `logs/`. If `<output_filename>` is not provided, 
 a default filename will be given e.g. `output_gptq_v0.4.0_{timestamp}.log`
+
+## HuggingFace Open LLM Leaderboard Settings
+- ARC: 25-shot, arc_challenge (acc_norm)
+- HellaSwag: 10-shot, hellaswag (acc_norm)
+- TruthfulQA: 0-shot, truthfulqa_mc (mc2)
+- MMLU: 5-shot, mmlu (v0.4.0) (average of all the results acc)
+- Winogrande: 5-shot, winogrande (acc)
+- GSM8k: 5-shot, gsm8k (acc)
 
 ## Results
 | Model                 | Average | ARC  | HellaSwag | MMLU | TruthfulQA | Winogrande | GSM8K |
@@ -56,7 +64,7 @@ a default filename will be given e.g. `output_gptq_v0.4.0_{timestamp}.log`
 | Model                 |Harness Version| Average | ARC  | HellaSwag | MMLU | TruthfulQA | Winogrande | GSM8K |
 |-----------------------|----------|---------|------|-----------|------|------------|------------|-------|
 | meta-llama/llama-2-7b-chat-hf | v0.4.0   | 52.31 | 53.58 | 78.58  | 47.24* | 45.31  | 66.38  | 22.74** |
-| meta-llama/llama-2-7b-chat-hf | b281b09  |       | 52.3  | 78.52  |        | 45.31  | 73.01  | 18.73   |
+| meta-llama/llama-2-7b-chat-hf | b281b09  | 52.67 | 52.30 | 78.52  | 48.17% | 45.31  | 73.01  | 18.73   |
 | TheBloke/Llama-2-7B-Chat-GPTQ | v0.4.0   | 48.58 | 49.49 | 74.25  | 43.11* | 44.11  | 65.43  | 15.24** |
 | TheBloke/Llama-2-7B-Chat-GPTQ | b281b09  | 49.25 | 51.28 | 72.01  | 44.20  | 44.11  | 70.80  | 13.12   |
 

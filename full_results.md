@@ -255,7 +255,7 @@ hf-causal-experimental (pretrained=meta-llama/Llama-2-7b-chat-hf), limit: None, 
 |                                                 |       |acc_norm|0.4277|±  |0.0385|
 |hendrycksTest-world_religions                    |      1|acc     |0.7251|±  |0.0342|
 |                                                 |       |acc_norm|0.7251|±  |0.0342|
-
+avg: 27.4563/57 = 48.17%
 
 real	118m34.893s
 
