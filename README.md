@@ -1,4 +1,4 @@
-## Setting Up Miniconda
+## 1. Setting Up Miniconda
 ```
 cd ..
 wget https://repo.anaconda.com/miniconda/Miniconda3-latest-Linux-x86_64.sh
@@ -9,7 +9,7 @@ conda create -n llama2_env python=3.10
 conda activate llama2_env
 ```
 
-## Installing EleutherAI LM Evaluation Harness and AutoGPTQ
+## 2. Installing EleutherAI LM Evaluation Harness and AutoGPTQ
 Newer version than what HuggingFace uses for Open LLM Leaderboard
 ```
 git clone https://github.com/EleutherAI/lm-evaluation-harness
@@ -25,12 +25,12 @@ pip install "git+https://github.com/PanQiWei/AutoGPTQ.git@v0.6.0"
 # pip install triton==2.1.0
 ```
 
-## Llama2 Access
+## 3. Llama2 Access
 Request access at https://huggingface.co/meta-llama/Llama-2-7b-chat-hf
 
 Log in with `huggingface-cli login` before running evaluation harness
 
-## Evaluation Commands
+## 4. Evaluation Commands
 On first run, it takes about 10 minutes to download the model weights.
 
 Run the entire HuggingFace Open LLM Leaderboard evaluation suite with the following command:
@@ -45,7 +45,7 @@ Else, `meta-llama/Llama-2-7b-chat-hf` weights will be used.
 The terminal output is saved to `<output_filename` inside `logs/`. If `<output_filename>` is not provided, 
 a default filename will be given e.g. `output_gptq_v0.4.0_{timestamp}.log`
 
-## HuggingFace Open LLM Leaderboard Settings
+### 4.1 HuggingFace Open LLM Leaderboard Settings
 - ARC: 25-shot, arc_challenge (acc_norm)
 - HellaSwag: 10-shot, hellaswag (acc_norm)
 - TruthfulQA: 0-shot, truthfulqa_mc (mc2)
@@ -53,7 +53,15 @@ a default filename will be given e.g. `output_gptq_v0.4.0_{timestamp}.log`
 - Winogrande: 5-shot, winogrande (acc)
 - GSM8k: 5-shot, gsm8k (acc)
 
-## Results
+### 4.2 Myrtle.ai Quick Evaluation Settings
+- ARC: 25-shot, arc_challenge (acc_norm)
+- HellaSwag: 5-shot, hellaswag (acc_norm)
+- TruthfulQA: 0-shot, truthfulqa_mc (mc2)
+- MMLU: 2-shot, mmlu (v0.4.0) (average of all the results acc)
+- Winogrande: 5-shot, winogrande (acc)
+- GSM8k: 3-shot, gsm8k (acc)
+
+## 5. Results
 | Model                 | Average | ARC  | HellaSwag | MMLU | TruthfulQA | Winogrande | GSM8K |
 |-----------------------|---------|------|-----------|------|------------|------------|-------|
 | meta-llama/llama-2-7b-chat-hf | 50.74    | 52.9 | 78.55     | 48.32 | 45.57       | 71.74      | 7.35  |
