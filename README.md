@@ -33,6 +33,18 @@ Log in with `huggingface-cli login` before running evaluation harness
 ## Evaluation Commands
 On first run, it takes about 10 minutes to download the model weights.
 
+Run the entire HuggingFace Open LLM Leaderboard evaluation suite with the following command:
+```
+bash ./eval.sh <harness_version> <gptq_flag> <output_filename>
+```
+`<harness_version>` is either `v0.4.0` or `b281b09`.
+
+`<gptq_flaq>` is either `True` or `False`. If True, `pretrained=TheBloke/Llama-2-7B-Chat-GPTQ` weights will be used. 
+Else, `meta-llama/Llama-2-7b-chat-hf` weights will be used.
+
+The terminal output is saved to `<output_filename` inside `logs/`. If `<output_filename>` is not provided, 
+a default filename will be given e.g. `output_gptq_v0.4.0_{timestamp}.log`
+
 ## Results
 | Model                 | Average | ARC  | HellaSwag | MMLU | TruthfulQA | Winogrande | GSM8K |
 |-----------------------|---------|------|-----------|------|------------|------------|-------|
