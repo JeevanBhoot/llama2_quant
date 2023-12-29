@@ -102,8 +102,8 @@ hf (pretrained=meta-llama/Llama-2-7b-chat-hf), gen_kwargs: (), limit: None, num_
 |arc_challenge|Yaml   |none  |    25|acc     |0.5026|±  |0.0146|
 |             |       |none  |    25|acc_norm|0.5358|±  |0.0146|
 
-acc_norm: 53.58% vs 52.9% (hf) //
-9 mins 45 secs (hypatia)
+
+real	10m44.376s
 
 hf (pretrained=meta-llama/Llama-2-7b-chat-hf), gen_kwargs: (), limit: None, num_fewshot: 10, batch_size: 1
 |  Tasks  |Version|Filter|n-shot| Metric |Value |   |Stderr|
@@ -111,8 +111,8 @@ hf (pretrained=meta-llama/Llama-2-7b-chat-hf), gen_kwargs: (), limit: None, num_
 |hellaswag|Yaml   |none  |    10|acc     |0.5927|±  |0.0049|
 |         |       |none  |    10|acc_norm|0.7858|±  |0.0041|
 
-acc_norm: 78.58% vs 78.55% (hf) //
-1 hr 13 mins 10 secs (hypatia)
+
+real	76m29.362s
 
 hf (pretrained=meta-llama/Llama-2-7b-chat-hf), gen_kwargs: (), limit: None, num_fewshot: 5, batch_size: 1
 |               Tasks               |Version|Filter|n-shot|Metric|Value |   |Stderr|
@@ -179,40 +179,40 @@ avg acc: 27.4563/57 = 0.4817% vs 48.32% (hf) //
 1 hr 27 mins 16 secs (hypatia)
 
 hf (pretrained=meta-llama/Llama-2-7b-chat-hf), gen_kwargs: (), limit: None, num_fewshot: 5, batch_size: 1    
-|      Groups      |Version|Filter|n-shot|Metric|Value |   |Stderr|                                            
-|------------------|-------|------|-----:|------|-----:|---|-----:|                                            
-|mmlu              |N/A    |none  |     0|acc   |0.4724|±  |0.1260|                                            
-| - humanities     |N/A    |none  |     5|acc   |0.4380|±  |0.1478|                                            
-| - other          |N/A    |none  |     5|acc   |0.5472|±  |0.0981|                                            
-| - social_sciences|N/A    |none  |     5|acc   |0.5466|±  |0.0945|                                            
-| - stem           |N/A    |none  |     5|acc   |0.3777|±  |0.0940|  
+|      Groups      |Version|Filter|n-shot|Metric|Value |   |Stderr|
+|------------------|-------|------|-----:|------|-----:|---|-----:|
+|mmlu              |N/A    |none  |     0|acc   |0.4724|±  |0.1260|
+| - humanities     |N/A    |none  |     5|acc   |0.4380|±  |0.1478|
+| - other          |N/A    |none  |     5|acc   |0.5472|±  |0.0981|
+| - social_sciences|N/A    |none  |     5|acc   |0.5466|±  |0.0945|
+| - stem           |N/A    |none  |     5|acc   |0.3777|±  |0.0940|
 
-avg acc: 47.24% vs 48.32% //
-1 hr 27 mins 15 secs (hypatia)
 
-hf (pretrained=meta-llama/Llama-2-7b-chat-hf), gen_kwargs: (), limit: None, num_fewshot: None, batch_size: 1
+real	92m0.077s
+
+hf (pretrained=meta-llama/Llama-2-7b-chat-hf), gen_kwargs: (), limit: None, num_fewshot: 0, batch_size: 1
 |    Tasks     |Version|Filter|n-shot|Metric|Value |   |Stderr|
 |--------------|-------|------|-----:|------|-----:|---|-----:|
 |truthfulqa_mc2|Yaml   |none  |     0|acc   |0.4531|±  |0.0156|
 
-acc: 45.31% vs 45.57% (hf)
-2 mins 44 secs (hypatia)
+
+real	2m56.960s
 
 hf (pretrained=meta-llama/Llama-2-7b-chat-hf), gen_kwargs: (), limit: None, num_fewshot: 5, batch_size: 1
 |  Tasks   |Version|Filter|n-shot|Metric|Value |   |Stderr|
 |----------|-------|------|-----:|------|-----:|---|-----:|
 |winogrande|Yaml   |none  |     5|acc   |0.6638|±  |0.0133|
 
-acc: 66.38% vs 71.74% (hf)
-48 secs
+
+real	0m59.503s
 
 hf (pretrained=meta-llama/Llama-2-7b-chat-hf), gen_kwargs: (), limit: None, num_fewshot: 5, batch_size: 1
 |Tasks|Version|  Filter  |n-shot|  Metric   |Value |   |Stderr|
 |-----|-------|----------|-----:|-----------|-----:|---|-----:|
 |gsm8k|Yaml   |get-answer|     5|exact_match|0.2274|±  |0.0115|
 
-exact_match: 22.74% vs 7.35% (hf - acc?) //
-54 mins 35 secs
+
+real	54m50.767s
 
 
 #### HF version (commit b281b09)
@@ -632,9 +632,9 @@ v0.4.0 Winogrande - new preprocessing?
 
 Time taken to evaluate:
 
-| Model                            | Harness Version | ARC  | HellaSwag | MMLU | TruthfulQA | Winogrande | GSM8K |
-|----------------------------------|-----------------|------|-----------|------|------------|------------|-------|
-| meta-llama/llama-2-7b-chat-hf    | v0.4.0          | 9m45s  | 1h13m10s | 1h27m15s | 2m44s | 48s   | 54m35s |
-| meta-llama/llama-2-7b-chat-hf    | b281b09         | 13m18s | 1h38m58s | 1h58m35s | 3m10s | 1m28s | 48m07s |
-| TheBloke/Llama-2-7B-Chat-GPTQ    | v0.4.0          | 9m02s  | 1h03m47s | 1h20m23s | 4m11s | 1m01  | 30m21s |
-| TheBloke/Llama-2-7B-Chat-GPTQ    | b281b09         | 11m29s | 1h26m12s | 1h46m48s | 4m29s | 2m05s | 29m30s |
+| Model                            | Harness Version | ARC  | HellaSwag | MMLU | TruthfulQA | Winogrande | GSM8K | Total |
+|----------------------------------|-----------------|------|-----------|------|------------|------------|-------|-------|
+| meta-llama/llama-2-7b-chat-hf    | v0.4.0          | 10m44s | 1h16m29s | 1h32m00s | 2m57s | 1m00s | 54m51s | 3h58m |
+| meta-llama/llama-2-7b-chat-hf    | b281b09         | 13m18s | 1h38m58s | 1h58m35s | 3m10s | 1m28s | 48m07s | 4h43m |
+| TheBloke/Llama-2-7B-Chat-GPTQ    | v0.4.0          | 9m02s  | 1h03m47s | 1h20m23s | 4m11s | 1m01  | 30m21s | 3h09m |
+| TheBloke/Llama-2-7B-Chat-GPTQ    | b281b09         | 11m29s | 1h26m12s | 1h46m48s | 4m29s | 2m05s | 29m30s | 4h00m |
