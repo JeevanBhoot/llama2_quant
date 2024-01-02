@@ -10,7 +10,8 @@ conda activate llama2_env
 ```
 
 ## 2. Installing EleutherAI LM Evaluation Harness and AutoGPTQ
-Newer version than what HuggingFace uses for Open LLM Leaderboard
+v0.4.0 - Newer version than what HuggingFace uses for Open LLM Leaderboard
+Commit b281b09 - Same version as HuggingFace
 ```
 git clone https://github.com/EleutherAI/lm-evaluation-harness
 cd lm-evaluation-harness
@@ -62,12 +63,15 @@ a default filename will be given e.g. `output_gptq_v0.4.0_{timestamp}.log`
 - GSM8k: 3-shot, gsm8k (acc)
 
 ## 5. Results
+### 5.1 HuggingFace Open LLM Leaderboard
+
 | Model                 | Average | ARC  | HellaSwag | MMLU | TruthfulQA | Winogrande | GSM8K |
 |-----------------------|---------|------|-----------|------|------------|------------|-------|
 | meta-llama/llama-2-7b-chat-hf | 50.74    | 52.9 | 78.55     | 48.32 | 45.57       | 71.74      | 7.35  |
 | TheBloke/Llama-2-7B-GPTQ         | 48.48   | 52.05| 77.59     | 43.99| 39.32       | 72.93      | 5     |
 | TheBloke/Llama-2-7b-Chat-AWQ     | 29.14   | 27.22| 25.48     | 24.67| 49.95       | 47.51      | 0     |
 
+### 5.2 Replicated Results with EleutherAi Eval Harness
 
 | Model                 |Harness Version| Average | ARC  | HellaSwag | MMLU | TruthfulQA | Winogrande | GSM8K |
 |-----------------------|----------|---------|------|-----------|------|------------|------------|-------|
@@ -88,3 +92,13 @@ Time taken to evaluate:
 | meta-llama/llama-2-7b-chat-hf    | b281b09         | 13m18s | 1h38m58s | 1h58m35s | 3m10s | 1m28s | 48m07s | 4h43m |
 | TheBloke/Llama-2-7B-Chat-GPTQ    | v0.4.0          | 9m02s  | 1h03m47s | 1h20m23s | 4m11s | 1m01  | 30m21s | 3h09m |
 | TheBloke/Llama-2-7B-Chat-GPTQ    | b281b09         | 11m29s | 1h26m12s | 1h46m48s | 4m29s | 2m05s | 29m30s | 4h00m |
+
+### 5.3 Myrtle.ai Quick Evaluation
+
+| Model                 |Harness Version| Average | ARC  | HellaSwag (5) | MMLU (2) | TruthfulQA | Winogrande | GSM8K (3) |
+|-----------------------|----------|---------|------|-----------|------|------------|------------|-------|
+| TheBloke/Llama-2-7B-Chat-GPTQ | v0.4.0   | 48.22 | 49.49 | 74.04  | 43.16 | 44.11  | 65.19  | 13.34 |
+
+| Model                            | Harness Version | ARC  | HellaSwag | MMLU | TruthfulQA | Winogrande | GSM8K | Total |
+|----------------------------------|-----------------|------|-----------|------|------------|------------|-------|-------|
+| TheBloke/Llama-2-7B-Chat-GPTQ | v0.4.0   | 9m02s | 42m14s | 51m05s | 4m17s | 1m05s | 26m42s | 2h15m |
