@@ -81,8 +81,11 @@ a default filename will be given e.g. `output_gptq_v0.4.0_{timestamp}.log`
 | TheBloke/Llama-2-7B-Chat-GPTQ | b281b09  | 49.25 | 51.28 | 72.01  | 44.20  | 44.11  | 70.80  | 13.12   |
 
 *weighted (over num samples) average (vs unweighted avg)
+
 **exact match metric (vs average)
+
 v0.4.0 Winogrande - new preprocessing?
+
 
 Time taken to evaluate:
 
