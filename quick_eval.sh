@@ -22,14 +22,14 @@ run_python_command() {
         else
             model_args="pretrained=meta-llama/Llama-2-7b-chat-hf"
         fi
-        (time lm_eval --model hf --model_args $model_args --tasks $1 --device cuda:0 --num_fewshot $2 --batch_size 1) |& tee -a "$output_filename"
+        (time lm_eval --model hf --model_args $model_args --tasks $1 --device cuda:0 --num_fewshot $2 --batch_size auto) |& tee -a "$output_filename"
     elif [ "$harness_version" == "b281b09" ]; then
         if [ "$gptq_flag" == "True" ]; then
             model_args="pretrained=TheBloke/Llama-2-7B-Chat-GPTQ,quantized=model.safetensors,load_in_4bit=True"
         else
             model_args="pretrained=meta-llama/Llama-2-7b-chat-hf"
         fi
-        (time python ./lm-evaluation-harness/main.py --model hf-causal-experimental --model_args $model_args --tasks $1 --device cuda:0 --num_fewshot $2 --batch_size 1) |& tee -a "$output_filename"
+        (time python ./lm-evaluation-harness/main.py --model hf-causal-experimental --model_args $model_args --tasks $1 --device cuda:0 --num_fewshot $2 --batch_size auto) |& tee -a "$output_filename"
     else
         echo "Invalid harness version."
         exit 1
@@ -37,10 +37,10 @@ run_python_command() {
 }
 
 # Run the common tasks for both versions
-run_python_command "arc_challenge" 25
-run_python_command "hellaswag" 5 # 10
+run_python_command "arc_challenge" 20 #25
+run_python_command "hellaswag" 3 # 10 -> 5 -> 3
 run_python_command "winogrande" 5
-run_python_command "gsm8k" 3 # 5
+run_python_command "gsm8k" 2 # 5 -> 3 -> 2
 
 
 # Run the tasks based on the harness version

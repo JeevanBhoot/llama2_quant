@@ -53,6 +53,7 @@ a default filename will be given e.g. `output_gptq_v0.4.0_{timestamp}.log`
 - MMLU: 5-shot, mmlu (v0.4.0) (average of all the results acc)
 - Winogrande: 5-shot, winogrande (acc)
 - GSM8k: 5-shot, gsm8k (acc)
+All batch size 1
 
 ### 4.2 Myrtle.ai Quick Evaluation Settings
 - ARC: 25-shot, arc_challenge (acc_norm)
@@ -61,6 +62,16 @@ a default filename will be given e.g. `output_gptq_v0.4.0_{timestamp}.log`
 - MMLU: 2-shot, mmlu (v0.4.0) (average of all the results acc)
 - Winogrande: 5-shot, winogrande (acc)
 - GSM8k: 3-shot, gsm8k (acc)
+All batch size 1
+
+#### 4.2.1 Quick Eval v2
+- ARC: 20-shot, arc_challenge (acc_norm), batch size 8
+- HellaSwag: 3-shot, hellaswag (acc_norm), batch size 16
+- TruthfulQA: 0-shot, truthfulqa_mc (mc2), batch size 32
+- MMLU: 2-shot, mmlu (v0.4.0) (average of all the results acc), batch size 4
+- Winogrande: 5-shot, winogrande (acc), batch size 64
+- GSM8k: 2-shot, gsm8k (acc), batch size 2
+Auto batch size
 
 ## 5. Results
 ### 5.1 HuggingFace Open LLM Leaderboard
@@ -102,14 +113,24 @@ Time taken to evaluate:
 |-----------------------|----------|---------|------|-----------|------|------------|------------|-------|
 | TheBloke/Llama-2-7B-Chat-GPTQ | v0.4.0   | 48.22 | 49.49 | 74.04  | 43.16 | 44.11  | 65.19  | 13.34 |
 
-| Model                            | Harness Version | ARC  | HellaSwag | MMLU | TruthfulQA | Winogrande | GSM8K | Total |
+| Model                            | Harness Version | ARC  | HellaSwag (5) | MMLU (2) | TruthfulQA | Winogrande | GSM8K (3) | Total |
 |----------------------------------|-----------------|------|-----------|------|------------|------------|-------|-------|
 | TheBloke/Llama-2-7B-Chat-GPTQ | v0.4.0   | 9m02s | 42m14s | 51m05s | 4m17s | 1m05s | 26m42s | 2h15m |
 
-### Seed Variation
+#### 5.3.1 Quick Eval v2
 
-| Model                 |Harness Version| Seed | Average | ARC  | HellaSwag (5) | MMLU (2) | TruthfulQA | Winogrande | GSM8K (3) |
+| Model                 |Harness Version| Average | ARC (20) | HellaSwag (3) | MMLU (2) | TruthfulQA | Winogrande | GSM8K (2) |
+|-----------------------|----------|---------|------|-----------|------|------------|------------|-------|
+| TheBloke/Llama-2-7B-Chat-GPTQ | v0.4.0   |  | 52.05 | 74.70  | 43.20 | 44.13  | 65.19  | 12.36 |
+
+| Model                            | Harness Version | ARC (20)  | HellaSwag (3) | MMLU (2) | TruthfulQA | Winogrande | GSM8K (2) | Total |
+|----------------------------------|-----------------|------|-----------|------|------------|------------|-------|-------|
+| TheBloke/Llama-2-7B-Chat-GPTQ | v0.4.0   | 7m10s | 21m46s | 35m50s | 2m16s | 36s | 22m11s | 1h30m |
+
+### 5.4 Seed Variation
+
+| Model                 |Harness Version| Seed | Average | ARC  | HellaSwag | MMLU | TruthfulQA | Winogrande | GSM8K |
 |-----------------------|---------------|------|---------|------|---------------|----------|------------|------------|-----------|
-| TheBloke/Llama-2-7B-Chat-GPTQ | v0.4.0 | 42  |  48.58  | 49.49 | 74.25  | 43.11 | 44.11  | 65.43  | 15.24 |
-| TheBloke/Llama-2-7B-Chat-GPTQ | v0.4.0 | 42  |  48.57  | 49.49 | 74.25  | 43.11 | 44.11  | 65.27  | 15.16 |
-| TheBloke/Llama-2-7B-Chat-GPTQ | v0.4.0 | 1   |    | 49.49 | 74.25  | 43.11 | 44.11  | 65.27  | 15.16 |
+| TheBloke/Llama-2-7B-Chat-GPTQ | v0.4.0 | default  |  48.58  | 49.49 | 74.25  | 43.11 | 44.11  | 65.43  | 15.24 |
+| TheBloke/Llama-2-7B-Chat-GPTQ | v0.4.0 | default  |  48.57  | 49.49 | 74.25  | 43.11 | 44.11  | 65.27  | 15.16 |
+| TheBloke/Llama-2-7B-Chat-GPTQ | v0.4.0 |   |    | 49.49 | 74.25  | 43.11 | 44.11  | 65.27  | 15.16 |
