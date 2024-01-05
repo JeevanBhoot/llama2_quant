@@ -75,16 +75,16 @@ a default filename will be given e.g. `output_gptq_v0.4.0_{timestamp}.log`
 
 | Model                 |Harness Version| Average | ARC  | HellaSwag | MMLU | TruthfulQA | Winogrande | GSM8K |
 |-----------------------|----------|---------|------|-----------|------|------------|------------|-------|
-| meta-llama/llama-2-7b-chat-hf | v0.4.0   | 52.31 | 53.58 | 78.58  | 47.24* | 45.31  | 66.38  | 22.74** |
-| meta-llama/llama-2-7b-chat-hf | b281b09  | 52.67 | 52.30 | 78.52  | 48.17% | 45.31  | 73.01  | 18.73   |
-| TheBloke/Llama-2-7B-Chat-GPTQ | v0.4.0   | 48.58 | 49.49 | 74.25  | 43.11* | 44.11  | 65.43  | 15.24** |
-| TheBloke/Llama-2-7B-Chat-GPTQ | b281b09  | 49.25 | 51.28 | 72.01  | 44.20  | 44.11  | 70.80  | 13.12   |
+| meta-llama/llama-2-7b-chat-hf | v0.4.0   | 52.31 | 53.58 | 78.58  | 47.24* | 45.31  | 66.38**  | 22.74*** |
+| meta-llama/llama-2-7b-chat-hf | b281b09  | 52.67 | 52.30 | 78.52  | 48.17  | 45.31  | 73.01    | 18.73    |
+| TheBloke/Llama-2-7B-Chat-GPTQ | v0.4.0   | 48.58 | 49.49 | 74.25  | 43.11* | 44.11  | 65.43**  | 15.24*** |
+| TheBloke/Llama-2-7B-Chat-GPTQ | b281b09  | 49.25 | 51.28 | 72.01  | 44.20  | 44.11  | 70.80    | 13.12    |
 
 *weighted (over num samples) average (vs unweighted avg)
 
-**exact match metric (vs average)
+**v0.4.0 Winogrande - new preprocessing?
 
-v0.4.0 Winogrande - new preprocessing?
+***exact match metric (vs average)
 
 
 Time taken to evaluate:
@@ -105,3 +105,11 @@ Time taken to evaluate:
 | Model                            | Harness Version | ARC  | HellaSwag | MMLU | TruthfulQA | Winogrande | GSM8K | Total |
 |----------------------------------|-----------------|------|-----------|------|------------|------------|-------|-------|
 | TheBloke/Llama-2-7B-Chat-GPTQ | v0.4.0   | 9m02s | 42m14s | 51m05s | 4m17s | 1m05s | 26m42s | 2h15m |
+
+### Seed Variation
+
+| Model                 |Harness Version| Seed | Average | ARC  | HellaSwag (5) | MMLU (2) | TruthfulQA | Winogrande | GSM8K (3) |
+|-----------------------|---------------|------|---------|------|---------------|----------|------------|------------|-----------|
+| TheBloke/Llama-2-7B-Chat-GPTQ | v0.4.0 | 42  |  48.58  | 49.49 | 74.25  | 43.11 | 44.11  | 65.43  | 15.24 |
+| TheBloke/Llama-2-7B-Chat-GPTQ | v0.4.0 | 1   |  48.57  | 49.49 | 74.25  | 43.11 | 44.11  | 65.27  | 15.16 |
+| TheBloke/Llama-2-7B-Chat-GPTQ | v0.4.0 | 101 |    | 49.49 | 74.25  | 43.11 | 44.11  | 65.27  | 15.16 |
