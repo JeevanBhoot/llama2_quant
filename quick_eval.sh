@@ -22,7 +22,7 @@ run_python_command() {
         else
             model_args="pretrained=meta-llama/Llama-2-7b-chat-hf"
         fi
-        (time lm_eval --model hf --model_args $model_args --tasks $1 --device cuda:0 --num_fewshot $2 --batch_size 1) |& tee -a "$output_filename"
+        (time accelerate launch -m lm_eval --model hf --model_args $model_args --tasks $1 --device cuda:0 --num_fewshot $2 --batch_size auto) |& tee -a "$output_filename"
     elif [ "$harness_version" == "b281b09" ]; then
         if [ "$gptq_flag" == "True" ]; then
             model_args="pretrained=TheBloke/Llama-2-7B-Chat-GPTQ,quantized=model.safetensors,load_in_4bit=True"
