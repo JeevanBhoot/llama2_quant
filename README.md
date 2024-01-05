@@ -111,5 +111,5 @@ Time taken to evaluate:
 | Model                 |Harness Version| Seed | Average | ARC  | HellaSwag (5) | MMLU (2) | TruthfulQA | Winogrande | GSM8K (3) |
 |-----------------------|---------------|------|---------|------|---------------|----------|------------|------------|-----------|
 | TheBloke/Llama-2-7B-Chat-GPTQ | v0.4.0 | 42  |  48.58  | 49.49 | 74.25  | 43.11 | 44.11  | 65.43  | 15.24 |
-| TheBloke/Llama-2-7B-Chat-GPTQ | v0.4.0 | 1   |  48.57  | 49.49 | 74.25  | 43.11 | 44.11  | 65.27  | 15.16 |
-| TheBloke/Llama-2-7B-Chat-GPTQ | v0.4.0 | 101 |    | 49.49 | 74.25  | 43.11 | 44.11  | 65.27  | 15.16 |
+| TheBloke/Llama-2-7B-Chat-GPTQ | v0.4.0 | 42  |  48.57  | 49.49 | 74.25  | 43.11 | 44.11  | 65.27  | 15.16 |
+| TheBloke/Llama-2-7B-Chat-GPTQ | v0.4.0 | 1   |    | 49.49 | 74.25  | 43.11 | 44.11  | 65.27  | 15.16 |
